@@ -1,0 +1,8 @@
+июл 01 16:15:45 mephi-2026.domain.local systemd[1]: Starting nginx.service - The nginx HTTP and reverse proxy server...
+июл 01 16:15:45 mephi-2026.domain.local nginx[5291]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+июл 01 16:15:45 mephi-2026.domain.local nginx[5291]: nginx: configuration file /etc/nginx/nginx.conf test is successful
+июл 01 16:15:45 mephi-2026.domain.local systemd[1]: Started nginx.service - The nginx HTTP and reverse proxy server.
+июл 01 16:52:15 mephi-2026.domain.local systemd[1]: Reloading nginx.service - The nginx HTTP and reverse proxy server...
+июл 01 16:52:15 mephi-2026.domain.local nginx[7374]: nginx: [warn] conflicting server name "_" on 0.0.0.0:80, ignored
+июл 01 16:52:15 mephi-2026.domain.local nginx[7374]: nginx: [warn] conflicting server name "_" on [::]:80, ignored
+июл 01 16:52:15 mephi-2026.domain.local systemd[1]: Reloaded nginx.service - The nginx HTTP and reverse proxy server.

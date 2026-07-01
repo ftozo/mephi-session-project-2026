@@ -1,0 +1,62 @@
+    1  echo "Hello from Student: 12345" > /data/mephi-web/index.html
+    2  ls -l /data/mephi-web/index.html
+    3  sudo restorecon -v /data/mephi-web/index.html
+    4  echo "Hello from Student: 39583" > /data/mephi-web/index.html
+    5  ls -l /data/mephi-web/index.html
+    6  sudo restorecon -v /data/mephi-web/index.html
+    7  sudo firewall-cmd --permanent --add-service=http
+    8  sudo firewall-cmd --reload
+    9  sudo firewall-cmd --list-all
+   10  sudo tee /etc/nginx/conf.d/mephi-web.conf <<'EOF'
+   11  server {
+   12      listen 80 default_server;
+   13      server_name _;
+   14      root /data/mephi-web;
+   15      index index.html;
+   16  }
+   17  EOF
+   18  sudo tee /etc/nginx/conf.d/mephi-web.conf <<'EOF'
+   19  server {
+   20      listen 80 default_server;
+   21      listen [::]:80 default_server; server_name _;
+   22      root /data/mephi-web;
+   23      index index.html index.htm; location / {try_files $uru/ =404; } access_log /var/log/nginx/mephi-access.log; error_log /var/log/nginx/mephi-error.log;
+   24  }
+   25  EOF
+   26  sudo nginx -t
+   27  sudo tee /etc/nginx/conf.d/mephi-web.conf <<'EOF'
+   28  server {
+   29      listen 80 default_server;
+   30      listen [::]:80 default_server; server_name _;
+   31      root /data/mephi-web;
+   32      index index.html index.htm; location / {try_files $uri $uri/ =404; } access_log /var/log/nginx/mephi-access.log; error_log /var/log/nginx/mephi-error.log;
+   33  }
+   34  EOF
+   35  sudo nginx -t
+   36  ls -l /etc/nginx/conf.d/
+   37  ls -l /etc/nginx/default.d/ 2>/dev/null
+   38  grep -rn "default_server\|root " /etc/nginx/nginx.conf /etc/nginx/conf.d/ 2>/dev/null
+   39  sudo systemctl reload nginx
+   40  sudo restorecon -Rv /data/mephi-web
+   41  ls -Z /data/mephi-web/index.html
+   42  curl http://localhost
+   43  curl http:// 192.168.1.100
+   44  echo 'Hello from Student: 371346' > /data/mephi-web/index.html
+   45  curl http://localhost
+   46  curl http:// 192.168.1.100
+   47  history > ~/project_history.txt
+   48  history > /home/ftozo/Документы/project_history.txt
+   49  ping -c 4 192.168.1.1 > ~/network_check.txt
+   50  ping -c 4 8.8.8.8 >> ~/network_check.txt
+   51  journalctl -u nginx --since "5 minutes ago" > ~/nginx_recent_logs.txt
+   52  cp /etc/fstab ~/fstab.txt
+   53  getenforce > ~/selinux_status.txt
+   54  ls -Zd /data/mephi-web > ~/file_contexts.txt
+   55  getcap /usr/sbin/tcpdump > ~/tcpdump_capabilities.txt
+   56  stat /data/mephi-web > ~/permissions.txt
+   57  id mephi-admin > ~/users_groups.txt
+   58  getent group mephi-devs >> ~/users_groups.txt
+   59  curl -s http://192.168.1.100 > ~/curl_output.txt
+   60  history
+   61 exit
+
